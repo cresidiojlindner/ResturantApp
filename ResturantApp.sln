@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResturantAppAzure", "ResturantAppAzure\ResturantAppAzure.csproj", "{5335D09C-5523-4083-9E2F-808D6D4C75F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionTests", "AzureFunctionTests\AzureFunctionTests.csproj", "{7EE89EF8-AECB-4060-BFBB-08668A4030C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5335D09C-5523-4083-9E2F-808D6D4C75F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5335D09C-5523-4083-9E2F-808D6D4C75F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5335D09C-5523-4083-9E2F-808D6D4C75F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5335D09C-5523-4083-9E2F-808D6D4C75F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE89EF8-AECB-4060-BFBB-08668A4030C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE89EF8-AECB-4060-BFBB-08668A4030C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE89EF8-AECB-4060-BFBB-08668A4030C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE89EF8-AECB-4060-BFBB-08668A4030C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEA29B44-9B70-43C0-8D08-B5D4432BE268}
+	EndGlobalSection
+EndGlobal
