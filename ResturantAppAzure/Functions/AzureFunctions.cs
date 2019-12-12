@@ -26,7 +26,7 @@ namespace ResturantAppAzure
             log.LogInformation("C# HTTP trigger function to get all resturants");
 
             IDbRepository<Resturant> Respository = new DbRepository<Resturant>();
-            return await Respository.GetItemsAsync("Resturant");
+            return await Respository.GetItemsAsync("resturant");
         }
     }
 
@@ -38,10 +38,25 @@ namespace ResturantAppAzure
             log.LogInformation($"C# HTTP trigger function to get resturant {id}-{zipCode}");
 
             IDbRepository<Resturant> Respository = new DbRepository<Resturant>();
-            var resturants = await Respository.GetItemsAsync(d => d.Id == id && d.ZipCode == zipCode, "Resturant");
 
-            return resturants
-                .SingleOrDefault();
+            //because I created my cosmosdb and used zipcode as my partition key i have to enable cross partitions which
+            //is not possible in the emulator. otherwise I would prefer the below to what I have
+
+            //var resturants = await Respository.GetItemsAsync(d => d.Id == id && d.ZipCode == zipCode, "resturant");
+
+            
+            //return resturants
+            //    .SingleOrDefault();
+
+            var resturants = await Respository.GetItemsAsync("resturant");
+            foreach(var rst in resturants)
+            {
+                if(rst.Id == id)
+                {
+                    return rst;
+                }
+            }
+            return null;
         }
     }
 
@@ -63,14 +78,14 @@ namespace ResturantAppAzure
                     resturant.NumberOfTimesRated = 1;
                     resturant.RatingTotal = resturant.Rating;
                     resturant.AverageRating = resturant.Rating;
-                    await Respository.CreateItemAsync(resturant, "Resturant");
+                    await Respository.CreateItemAsync(resturant, "resturant");
                 }
                 else
                 {
                     resturant.NumberOfTimesRated++;
                     resturant.RatingTotal = resturant.RatingTotal + resturant.Rating;                    
                     resturant.AverageRating = resturant.RatingTotal / resturant.NumberOfTimesRated;
-                    await Respository.UpdateItemAsync(resturant.Id, resturant, "Resturant");
+                    await Respository.UpdateItemAsync(resturant.Id, resturant, "resturant");
                 }
                 return true;
             }
@@ -91,7 +106,7 @@ namespace ResturantAppAzure
                 IDbRepository<Resturant> Respository = new DbRepository<Resturant>();
                 try
                 {
-                    await Respository.DeleteItemAsync(id, "Resturant", zipCode);
+                    await Respository.DeleteItemAsync(id, "resturant", zipCode);
                     return true;
                 }
                 catch

@@ -19,7 +19,7 @@ namespace ResturantAppAzure.Models
         public int Rating { get; set; }
         public double AverageRating { get; set; }
         public double RatingTotal { get; set; }
-        public int Hours { get; set; }
+        public string Hours { get; set; }
         public int NumberOfTimesRated { get; set; }
     }
 }

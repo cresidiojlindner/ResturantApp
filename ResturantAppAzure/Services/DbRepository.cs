@@ -14,7 +14,7 @@ namespace ResturantAppAzure.Services
     {
         private readonly string Endpoint = "https://localhost:8081/";
         private readonly string Key = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
-        private readonly string DatabaseId = "resturant";
+        private readonly string DatabaseId = "CresidioDB";
         private DocumentClient client;
 
         public DbRepository()
@@ -24,19 +24,25 @@ namespace ResturantAppAzure.Services
 
         public async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate, string collectionId)
         {
-            IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
-                UriFactory.CreateDocumentCollectionUri(DatabaseId, collectionId),
-                new FeedOptions { MaxItemCount = -1 })
-                .Where(predicate)
-                .AsDocumentQuery();
-
-            List<T> results = new List<T>();
-            while (query.HasMoreResults)
+            try
             {
-                results.AddRange(await query.ExecuteNextAsync<T>());
-            }
+                IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
+                    UriFactory.CreateDocumentCollectionUri(DatabaseId, collectionId),
+                    new FeedOptions { MaxItemCount = -1 })
+                    .Where(predicate)
+                    .AsDocumentQuery();
 
-            return results;
+                List<T> results = new List<T>();
+                while (query.HasMoreResults)
+                {
+                    results.AddRange(await query.ExecuteNextAsync<T>());
+                }
+
+                return results;
+            } catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<IEnumerable<T>> GetItemsAsync(string collectionId)

@@ -1,0 +1,59 @@
+<div class="card">    
+    <div class="card-header"    
+         *ngIf="resturant">    
+      {{pageTitle + ": " + resturant.name}}    
+    </div>    
+    <div class="card-body"    
+         *ngIf="resturant">    
+      <div class="row">    
+        <div class="col-md-8">    
+          <div class="row">    
+            <div class="col-md-3">Name:</div>    
+            <div class="col-md-6">{{resturant.name}}</div>    
+          </div>    
+          <div class="row">    
+            <div class="col-md-3">City:</div>    
+            <div class="col-md-6">{{resturant.city}}</div>    
+          </div>    
+          <div class="row">    
+            <div class="col-md-3">Address1:</div>    
+            <div class="col-md-6">{{resturant.address1}}</div>    
+          </div>
+          <div class="row">    
+            <div class="col-md-3">Address1:</div>    
+            <div class="col-md-6">{{resturant.address2}}</div>    
+          </div>    
+          <div class="row">    
+            <div class="col-md-3">State:</div>    
+            <div class="col-md-6">{{resturant.state}}</div>    
+          </div>    
+          <div class="row">    
+            <div class="col-md-3">Zipcode:</div>    
+            <div class="col-md-6">{{resturant.zipCode}}</div>    
+          </div>    
+          <div class="row">    
+            <div class="col-md-3">Avg Rating:</div>    
+            <div class="col-md-6">{{resturant.averageRating}}</div>    
+          </div>    
+        </div>    
+      </div>    
+      <div class="row mt-4">    
+        <div class="col-md-4">    
+          <button class="btn btn-outline-secondary mr-3"    
+                  style="width:80px"    
+                  (click)="onBack()">    
+            <i class="fa fa-chevron-left"></i> Back    
+          </button>    
+          <button class="btn btn-outline-primary"    
+                  style="width:80px"    
+                  [routerLink]="['/resturants', resturant.id, resturant.zipCode, 'edit']">    
+            Edit    
+          </button>    
+        </div>    
+      </div>    
+    </div>    
+    <div class="alert alert-danger"    
+         *ngIf="errorMessage">    
+      {{errorMessage}}    
+    </div>    
+  </div>    

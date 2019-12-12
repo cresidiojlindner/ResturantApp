@@ -1,0 +1,73 @@
+<div class="card">  
+    <div class="card-header">  
+      {{pageTitle}}  
+    </div>  
+    <div class="card-body">  
+      <div class="row" style="margin-bottom:15px;">  
+        <div class="col-md-2">Filter by:</div>  
+        <div class="col-md-4">  
+          <input type="text" [(ngModel)]="listFilter" />  
+        </div>  
+        <div class="col-md-3"></div>  
+        <div class="col-md-3">  
+          <button class="btn btn-primary mr-3" [routerLink]="['/resturants/0/0/edit']">  
+            <i class="fa fa-plus"></i> New Resturant  
+          </button>  
+        </div>  
+      </div>  
+      <div class="row" *ngIf="listFilter">  
+        <div class="col-md-6">  
+          <h4>Filtered by: {{listFilter}}</h4>  
+        </div>  
+      </div>  
+      <div class="table-responsive">  
+        <table class="table mb-0" *ngIf="resturants && resturants.length">  
+          <thead>  
+            <tr>  
+              <th>Name</th>  
+              <th>Address1</th>  
+              <th>Address2</th>  
+              <th>City</th> 
+              <th>State</th> 
+              <th>ZipCode</th> 
+              <th>Description</th>                 
+              <th>Avg Rating</th>  
+              <th></th>  
+              <th></th>  
+            </tr>  
+          </thead>  
+          <tbody>  
+            <tr *ngFor="let resturant of filteredResturants">  
+              <td>  
+                <a [routerLink]="['/resturants', resturant.id, resturant.zipCode]">  
+                  {{ resturant.name }}  
+                </a>  
+              </td>  
+              <td>{{ resturant.address1 }}</td>  
+              <td>{{ resturant.address2 }}</td>  
+              <td>{{ resturant.city }}</td>  
+              <td>{{ resturant.state}} </td>  
+              <td>{{ resturant.zipCode}} </td>  
+              <td>{{ resturant.description}} </td>  
+              <td>{{ resturant.averageRating}} </td>  
+              <td>  
+                <button class="btn btn-outline-primary btn-sm"  
+                  [routerLink]="['/resturants', resturant.id, resturant.zipCode, 'edit']">  
+                  <i class="fa fa-edit"></i> Edit  
+                </button>  
+              </td>  
+              <td>  
+                <button class="btn btn-outline-warning btn-sm"  
+                  (click)="deleteResturant(resturant.id,  resturant.name,resturant.zipCode);">  
+                  <i class="fa fa-trash"></i> Delete  
+                </button>  
+              </td>  
+            </tr>  
+          </tbody>  
+        </table>  
+      </div>  
+    </div>  
+  </div>  
+  <div *ngIf="errorMessage" class="alert alert-danger">  
+    Error: {{ errorMessage }}  
+  </div>  
